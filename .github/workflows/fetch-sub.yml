@@ -16,7 +16,7 @@ jobs:
       - name: Fetch Subscription File
         run: |
           curl -fL "https://jsjc.cfd/api/v1/client/subscribe?token=3f11bdd96bb83b13c4260b2b6252d05a" -o sub.yaml
-          ls -lh sub.txt
+          ls -lh sub.yaml
           head -n 10 sub.yaml
 
       - name: Commit and Push
