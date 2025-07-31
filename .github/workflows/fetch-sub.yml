@@ -15,12 +15,12 @@ jobs:
 
       - name: Fetch Subscription File
         run: |
-          curl -fL "https://jsjc.cfd/api/v1/client/subscribe?token=3f11bdd96bb83b13c4260b2b6252d05a" -o sub.txt
+          curl -fL "https://jsjc.cfd/api/v1/client/subscribe?token=3f11bdd96bb83b13c4260b2b6252d05a" -o sub.yaml
           ls -lh sub.txt
-          head -n 10 sub.txt
+          head -n 10 sub.yaml
 
-           - name: Commit and Push
-           run: |
+      - name: Commit and Push
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add sub.txt
