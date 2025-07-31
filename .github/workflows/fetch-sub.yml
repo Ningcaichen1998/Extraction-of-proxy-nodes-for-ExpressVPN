@@ -2,20 +2,23 @@ name: Daily Fetch Subscription
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天UTC时间2点（北京时间10点）
+    - cron: '0 2 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   fetch-subscription:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Fetch Subscription File
+      - name: Fetch and decode subscription file
         run: |
-          curl -fL "https://jsjc.cfd/api/v1/client/subscribe?token=3f11bdd96bb83b13c4260b2b6252d05a" -o sub.yaml
+          curl -fL "https://jsjc.cfd/api/v1/client/subscribe?token=3f11bdd96bb83b13c4260b2b6252d05a" -o raw_sub.txt
+          base64 -d raw_sub.txt > sub.yaml
           ls -lh sub.yaml
           head -n 10 sub.yaml
 
